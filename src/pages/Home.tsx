@@ -1,16 +1,17 @@
 import { FC, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import VideoList from '../components/VideoList';
-import VideoDetail from '../components/VideoDetail';
 import SettingsPanel from '../components/SettingsPanel';
-import { searchVideos, getVideoDetail } from '../utils/api';
+import { searchVideos } from '../utils/api';
+import { Button } from 'antd';
+import { SettingOutlined } from '@ant-design/icons';
 
 type ApiSource = 'heimuer' | 'ffzy' | 'custom';
 
 const Home: FC = () => {
+    const navigate = useNavigate();
     const [videos, setVideos] = useState<any[]>([]);
-    const [selectedVideo, setSelectedVideo] = useState<{ id: string; name: string } | null>(null);
-    const [episodes, setEpisodes] = useState<string[]>([]);
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [currentSource, setCurrentSource] = useState<ApiSource>('heimuer');
     const [customApi, setCustomApi] = useState('');
@@ -40,21 +41,8 @@ const Home: FC = () => {
         }
     };
 
-    const handleSelectVideo = async (id: string, name: string) => {
-        setIsLoading(true);
-        try {
-            const episodes = await getVideoDetail(id, currentSource, customApi);
-            setEpisodes(episodes);
-            setSelectedVideo({ id, name });
-        } catch (error) {
-            alert('获取视频详情失败，请稍后重试');
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    const handlePlayVideo = (url: string) => {
-        window.open(`https://hoplayer.com/index.html?url=${url}&autoplay=true`, '_blank');
+    const handleSelectVideo = (id: string, name: string) => {
+        navigate(`/video/${id}/${encodeURIComponent(name)}`);
     };
 
     const handleSourceChange = (source: ApiSource, newCustomApi: string) => {
@@ -68,40 +56,15 @@ const Home: FC = () => {
         <div className="page-bg min-h-screen text-white">
             {/* 设置按钮 */}
             <div className="fixed top-4 right-4 z-50">
-                <button
+                <Button
+                    type="primary"
+                    icon={<SettingOutlined />}
                     onClick={() => setIsSettingsOpen(true)}
-                    className="bg-white hover:bg-gray-100 border border-gray-200 hover:border-blue-500 rounded-lg px-4 py-2 transition-colors shadow-sm"
                 >
-                    <svg
-                        className="w-6 h-6 text-gray-700"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                        />
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                    </svg>
-                </button>
+                    设置
+                </Button>
             </div>
-            {/* 视频详情弹窗 */}
-            {selectedVideo && (
-                <VideoDetail
-                    title={selectedVideo.name}
-                    episodes={episodes}
-                    onClose={() => setSelectedVideo(null)}
-                    onPlay={handlePlayVideo}
-                />
-            )}
+
             {/* 主内容区域 */}
             <div className="container mx-auto px-4 py-8">
                 <div className="flex flex-col items-center justify-center mb-12">
@@ -131,8 +94,6 @@ const Home: FC = () => {
                 customApi={customApi}
                 onSourceChange={handleSourceChange}
             />
-
-
         </div>
     );
 };

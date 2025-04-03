@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Card, Row, Col } from 'antd';
 
 interface Video {
     vod_id: string;
@@ -14,19 +15,27 @@ interface VideoListProps {
 
 const VideoList: FC<VideoListProps> = ({ videos, onSelectVideo }) => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <Row gutter={[16, 16]}>
             {videos.map((video) => (
-                <div
-                    key={video.vod_id}
-                    className="card-hover bg-white rounded-lg overflow-hidden cursor-pointer p-6 h-fit shadow-sm hover:shadow-md"
-                    onClick={() => onSelectVideo(video.vod_id, video.vod_name)}
-                >
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">{video.vod_name}</h3>
-                    <p className="text-gray-500 text-sm mb-2">{video.type_name}</p>
-                    <p className="text-gray-400 text-sm">{video.vod_remarks}</p>
-                </div>
+                <Col span={6} key={video.vod_id}>
+                    <Card
+                        hoverable
+                        onClick={() => onSelectVideo(video.vod_id, video.vod_name)}
+                        className="h-full"
+                    >
+                        <Card.Meta
+                            title={video.vod_name}
+                            description={
+                                <div>
+                                    <p className="text-gray-500 text-sm mb-1">{video.type_name}</p>
+                                    <p className="text-gray-400 text-sm">{video.vod_remarks}</p>
+                                </div>
+                            }
+                        />
+                    </Card>
+                </Col>
             ))}
-        </div>
+        </Row>
     );
 };
 
