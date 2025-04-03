@@ -1,20 +1,15 @@
 {
   "name": "fish-star",
   "private": true,
-  "version": "1.0.0",
-  "description": "视频搜索和播放应用",
-  "main": "server.js",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "node server.js"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "node-fetch": "^2.6.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
@@ -31,7 +26,6 @@
     "globals": "^15.15.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
-    "vite": "^6.2.0",
-    "nodemon": "^2.0.22"
+    "vite": "^6.2.0"
   }
 }

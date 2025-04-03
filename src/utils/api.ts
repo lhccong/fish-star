@@ -1,3 +1,5 @@
+import { API_SITES, ApiSites } from '../config/constants';
+
 export type Category = {
   type_id: number;
   type_name: string;
@@ -18,6 +20,52 @@ export type Video = {
   vod_play_url: string;
   vod_score: number;
   vod_year: string;
+};
+
+const proxyUrl = (url: string) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+
+export const searchVideos = async (query: string, source: keyof ApiSites = 'heimuer', customApi?: string) => {
+    const apiUrl = customApi
+        ? customApi
+        : API_SITES[source].api + '/api.php/provide/vod/?ac=list&wd=' + encodeURIComponent(query);
+    
+    try {
+        const response = await fetch(proxyUrl(apiUrl));
+        if (!response.ok) {
+            throw new Error('API 请求失败');
+        }
+        return await response.json();
+    } catch (error) {
+        return {
+            code: 400,
+            msg: '搜索服务暂时不可用，请稍后再试',
+            list: [],
+        };
+    }
+};
+
+export const getVideoDetail = async (id: string, source: keyof ApiSites = 'heimuer', customApi?: string) => {
+    const detailUrl = customApi
+        ? customApi
+        : API_SITES[source].detail + `/index.php/vod/detail/id/${id}.html`;
+    
+    try {
+        const response = await fetch(proxyUrl(detailUrl));
+        const html = await response.text();
+
+        let matches = [];
+        if (source === 'ffzy') {
+            matches = html.match(/(?<=\$)(https?:\/\/[^"'\s]+?\/\d{8}\/\d+_[a-f0-9]+\/index\.m3u8)/g) || [];
+            matches = matches.map(link => link.split('(')[1]);
+        } else {
+            matches = html.match(/\$https?:\/\/[^"'\s]+?\.m3u8/g) || [];
+            matches = matches.map(link => link.substring(1));
+        }
+
+        return matches;
+    } catch (error) {
+        throw new Error('获取视频详情失败');
+    }
 };
 
 // 获取API URL，客户端使用重写规则，服务器端直接请求
