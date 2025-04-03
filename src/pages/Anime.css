@@ -1,0 +1,210 @@
+.movie-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    max-width: 400px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    background-color: #f0f0f0;
+}
+
+.movie-card {
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.red-bar {
+    width: 4px;
+    height: 30px;
+    background-color: #ff4d4f;
+    margin-right: 10px;
+}
+
+.movie-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.tags-section {
+    margin-bottom: 20px;
+}
+
+.tags-section .ant-tag {
+    margin-right: 10px;
+    padding: 4px 12px;
+    border-radius: 4px;
+}
+
+.details-section {
+    margin-top: 20px;
+}
+
+.detail-item {
+    margin-bottom: 12px;
+    display: flex;
+}
+
+.detail-label {
+    min-width: 50px;
+    color: #666;
+    margin-right: 10px;
+}
+
+.detail-value {
+    color: #333;
+}
+
+.update-text {
+    color: #1890ff;
+}
+
+.platform-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.platform-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.icon-iqiyi {
+    background-color: #1dd110;
+}
+.icon-youku {
+    background-color: #2fb3ff;
+}
+.icon-tencent {
+    background-color: #ff6700;
+}
+.icon-mgtv {
+    background-color: #ff4d4f;
+}
+.icon-bilibili {
+    background-color: #fb7299;
+}
+.icon-pptv {
+    background-color: #6633cc;
+}
+.icon-sohu {
+    background-color: #4285f4;
+}
+
+.action-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.play-button {
+    background-color: #ff4d4f;
+    border-color: #ff4d4f;
+}
+
+.collect-button {
+    background-color: #fff;
+    border-color: #ff4d4f;
+    color: #ff4d4f;
+}
+
+.poster-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.movie-poster {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.episodes-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.episodes-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.episode-button {
+    height: 40px;
+    border-radius: 4px;
+}
+
+.quality-tabs {
+    margin-top: 20px;
+}
+
+.quality-tab {
+    position: relative;
+    padding: 0 10px;
+}
+
+.quality-tab.active {
+    color: #ff4d4f;
+}
+
+.quality-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff4d4f;
+    color: white;
+    border-radius: 10px;
+    padding: 0 4px;
+    font-size: 10px;
+    min-width: 16px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .poster-container {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .episodes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
+

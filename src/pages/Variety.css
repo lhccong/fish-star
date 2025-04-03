@@ -1,0 +1,245 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f0f2f5;
+}
+
+.video-player-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f0f2f5;
+}
+
+/* 顶部搜索栏 */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f0f2f5;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.search-bar {
+    width: 200px;
+}
+
+.search-input {
+    border-radius: 4px;
+    background-color: #f0f2f5;
+}
+
+.url-display {
+    flex: 1;
+    margin: 0 20px;
+    background-color: #e8e8e8;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+.url-text {
+    font-size: 12px;
+    color: #666;
+}
+
+.url-link {
+    font-size: 12px;
+    color: #999;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin-left: 15px;
+}
+
+/* 主要内容区 */
+.variety-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    gap: 20px;
+    padding: 20px;
+    height: calc(100vh - 60px); /* 减去header的高度 */
+}
+
+/* 视频播放区 */
+.video-player {
+    flex: 2;
+    background-color: #000;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.video-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
+
+.now-playing {
+    font-size: 14px;
+}
+
+.close-button {
+    color: #fff;
+}
+
+.video-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.big-play-button {
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+.big-play-button:hover {
+    color: #fff;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    z-index: 2;
+}
+
+.control-button {
+    color: #fff;
+}
+
+.time-display {
+    margin: 0 15px;
+    color: #fff;
+    font-size: 12px;
+    flex: 1;
+}
+
+.right-controls {
+    display: flex;
+}
+
+/* 右侧信息面板 */
+.info-panel {
+    width: 280px;
+    background-color: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title-section {
+    margin-bottom: 15px;
+}
+
+.title-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.tags-section {
+    margin-bottom: 20px;
+}
+
+.video-tag {
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.section-title {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.source-section {
+    margin-bottom: 20px;
+}
+
+.active-source {
+    color: #ff4d4f;
+    font-weight: bold;
+}
+
+.episodes-section {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.episode-button {
+    width: 100%;
+    text-align: center;
+}
+
+.active-episode {
+    color: #ff4d4f;
+    border-color: #ff4d4f;
+    position: relative;
+}
+
+.active-episode::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background-color: #ff4d4f;
+}
+
+.bottom-controls {
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f0;
+}
+

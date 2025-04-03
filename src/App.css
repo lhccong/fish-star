@@ -19,15 +19,16 @@ body {
 
 .main-content {
   flex: 1;
-  margin-left: 240px;
-  padding: 2rem;
+  margin-left: 280px;
+  padding: 1rem;
+  width: calc(100% - 280px);
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }
 
 .logo {
