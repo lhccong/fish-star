@@ -57,32 +57,35 @@ const Home: FC = () => {
             {/* 设置按钮 */}
             <div className="fixed top-4 right-4 z-50">
                 <Button
-                    type="primary"
-                    icon={<SettingOutlined />}
+                    type="text"
+                    icon={<SettingOutlined className="text-white text-xl" />}
                     onClick={() => setIsSettingsOpen(true)}
-                >
-                    设置
-                </Button>
+                    className="hover:bg-white/10 transition-colors duration-200"
+                />
             </div>
 
             {/* 主内容区域 */}
-            <div className="container mx-auto px-4 py-8">
-                <div className="flex flex-col items-center justify-center mb-12">
-                    <h1 className="text-5xl font-bold gradient-text mb-12">视频搜索</h1>
-                    <SearchBar onSearch={handleSearch} />
+            <div className="container mx-auto px-4 py-12">
+                <div className="flex flex-col items-center justify-center mb-16">
+                    <h1 className="text-6xl font-bold gradient-text mb-8 tracking-tight">视频搜索</h1>
+                    <div className="w-full max-w-2xl">
+                        <SearchBar onSearch={handleSearch} />
+                    </div>
                 </div>
 
                 {isLoading && (
-                    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-                        <div className="bg-[#111] p-8 rounded-lg border border-[#333] flex items-center space-x-4">
-                            <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                            <p className="text-white text-lg">加载中...</p>
+                    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
+                        <div className="bg-[#111] p-6 rounded-xl border border-[#333] flex items-center space-x-4 shadow-lg">
+                            <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
+                            <p className="text-white text-base">加载中...</p>
                         </div>
                     </div>
                 )}
 
                 {videos.length > 0 && (
-                    <VideoList videos={videos} onSelectVideo={handleSelectVideo} />
+                    <div className="max-w-6xl mx-auto">
+                        <VideoList videos={videos} onSelectVideo={handleSelectVideo} />
+                    </div>
                 )}
             </div>
 
